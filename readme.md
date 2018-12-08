@@ -1,4 +1,4 @@
-![alt text]( https://travis-ci.org/oscar-raig/cleancoders-openchat.svg?branch=master)
+[![Build Status](https://travis-ci.org/oscar-raig/cleancoders-openchat.svg?branch=master)](https://travis-ci.org/oscar-raig/cleancoders-openchat)
 
 # Embedded Jetty Spark instance with request logger
 
