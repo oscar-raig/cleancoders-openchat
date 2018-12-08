@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.openchat.domain.users.RegsitrationData;
 import org.openchat.domain.users.User;
 import org.openchat.domain.users.UserService;
+import org.openchat.infrastructure.UserBuilder;
 import spark.Request;
 import spark.Response;
 
@@ -27,7 +28,11 @@ public class UsersApiShould {
   private static final String ABOUT = "a comment";
   private static final RegsitrationData REGISTRATION_DATA = new RegsitrationData(USERNAME, PASSWORD, ABOUT);
   private static final String AN_ID = "1";
-  private static final User USER = new User(AN_ID, USERNAME, ABOUT);
+  private static final User USER = UserBuilder.aUser()
+      .withId(AN_ID)
+      .withUsername(USERNAME)
+      .withAbout(ABOUT)
+      .build();
 
 
   private UsersApi userApi;
@@ -48,7 +53,7 @@ public class UsersApiShould {
 
   @Test
   public void callcreateUserService() {
-    
+
     userApi.createUser(request, response);
 
     verify(userService).createUser(REGISTRATION_DATA);
