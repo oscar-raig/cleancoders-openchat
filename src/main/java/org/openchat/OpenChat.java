@@ -15,7 +15,7 @@ public class OpenChat {
   private static final String  API_NOT_IMPLEMENTED = "API not implmented";
   private static final String  INTERNAL_SERVER_ERROR = "Internal Server Error";
 
-  private Routes routes = new Routes();
+  private Routes routes = new Routes(new Users());
 
   public void start() {
     port(4321);

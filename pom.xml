@@ -25,6 +25,17 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.jayway.restassured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>2.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.eclipsesource.minimal-json</groupId>
+            <artifactId>minimal-json</artifactId>
+            <version>${minimal-json.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -48,6 +59,11 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -56,5 +72,6 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <junit.version>4.12</junit.version>
         <build-helper-maven-plugin.version>1.9.1</build-helper-maven-plugin.version>
+        <minimal-json.version>0.9.4</minimal-json.version>
     </properties>
 </project>
