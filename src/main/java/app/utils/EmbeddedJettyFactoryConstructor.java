@@ -4,16 +4,16 @@ import org.eclipse.jetty.server.AbstractNCSARequestLog;
 import spark.embeddedserver.jetty.EmbeddedJettyFactory;
 
 public class EmbeddedJettyFactoryConstructor {
-    AbstractNCSARequestLog requestLog;
+  AbstractNCSARequestLog requestLog;
 
-    public EmbeddedJettyFactoryConstructor(AbstractNCSARequestLog requestLog) {
-        this.requestLog = requestLog;
-    }
+  public EmbeddedJettyFactoryConstructor(AbstractNCSARequestLog requestLog) {
+    this.requestLog = requestLog;
+  }
 
-    EmbeddedJettyFactory create() {
-        EmbeddedJettyServerFactory embeddedJettyServerFactory = new EmbeddedJettyServerFactory(this);
+  EmbeddedJettyFactory create() {
+    EmbeddedJettyServerFactory embeddedJettyServerFactory = new EmbeddedJettyServerFactory(this);
 
-        return new EmbeddedJettyFactory(embeddedJettyServerFactory);
-    }
+    return new EmbeddedJettyFactory(embeddedJettyServerFactory);
+  }
 
 }

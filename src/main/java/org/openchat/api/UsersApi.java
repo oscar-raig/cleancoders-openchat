@@ -7,10 +7,10 @@ import org.openchat.domain.users.UserService;
 import spark.Request;
 import spark.Response;
 
-public class UsersAPI {
+public class UsersApi {
   private final UserService userService;
 
-  public UsersAPI(UserService userService) {
+  public UsersApi(UserService userService) {
     this.userService = userService;
   }
 

@@ -7,23 +7,23 @@ import java.io.IOException;
 
 public class RequestLogFactory {
 
-    private Logger logger;
+  private Logger logger;
 
-    public RequestLogFactory(Logger logger) {
-        this.logger = logger;
-    }
+  public RequestLogFactory(Logger logger) {
+    this.logger = logger;
+  }
 
-    AbstractNCSARequestLog create() {
-        return new AbstractNCSARequestLog() {
-            @Override
-            protected boolean isEnabled() {
-                return true;
-            }
+  AbstractNCSARequestLog create() {
+    return new AbstractNCSARequestLog() {
+      @Override
+      protected boolean isEnabled() {
+        return true;
+      }
 
-            @Override
-            public void write(String s) throws IOException {
-                logger.info(s);
-            }
-        };
-    }
+      @Override
+      public void write(String trace) throws IOException {
+        logger.info(trace);
+      }
+    };
+  }
 }
