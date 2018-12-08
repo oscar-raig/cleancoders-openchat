@@ -1,7 +1,9 @@
 package org.openchat.domain.users;
 
 public class UserService {
-  public void createUser(RegsitrationData registrationData) {
-    throw new UnsupportedOperationException();
+  public User createUser(RegsitrationData registrationData) {
+    return new User("1",
+        registrationData.getUsername(),
+        registrationData.getAbout());
   }
 }
