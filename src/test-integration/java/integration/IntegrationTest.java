@@ -2,7 +2,7 @@ package integration;
 
 
 import com.eclipsesource.json.JsonObject;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.jayway.restassured.RestAssured.given;
 

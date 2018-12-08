@@ -1,14 +1,16 @@
 package org.openchat;
 
+import org.openchat.api.UsersAPI;
+
 import static spark.Spark.get;
 import static spark.Spark.post;
 
 public class Routes {
 
-  private final Users users;
+  private final UsersAPI usersAPI;
 
-  public Routes(Users users) {
-    this.users = users;
+  public Routes(UsersAPI usersAPI) {
+    this.usersAPI = usersAPI;
   }
 
   public void create() {
@@ -18,7 +20,7 @@ public class Routes {
 
   private void openChatRoutes() {
     get("status", (req, res) -> "OpenChat OK");
-    post("users" , (req,res) -> users.handle(req, res));
+    post("usersAPI" , (req,res) -> usersAPI.createUser(req, res));
   }
 
   private void swaggerRoutes() {

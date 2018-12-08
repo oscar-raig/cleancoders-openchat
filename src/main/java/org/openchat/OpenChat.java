@@ -1,5 +1,7 @@
 package org.openchat;
 
+import org.openchat.api.UsersAPI;
+import org.openchat.domain.users.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +17,7 @@ public class OpenChat {
   private static final String  API_NOT_IMPLEMENTED = "API not implmented";
   private static final String  INTERNAL_SERVER_ERROR = "Internal Server Error";
 
-  private Routes routes = new Routes(new Users());
+  private Routes routes = new Routes(new UsersAPI(new UserService()));
 
   public void start() {
     port(4321);
