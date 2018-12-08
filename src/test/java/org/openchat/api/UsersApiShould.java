@@ -39,15 +39,16 @@ public class UsersApiShould {
   @Before public void
   setUp() {
     userApi = new UsersApi(userService);
+    given(request.body()).willReturn(jsonContaining(REGISTRATION_DATA));
+    given(userService.createUser(REGISTRATION_DATA)).willReturn(USER);
+
   }
 
 
 
   @Test
   public void callcreateUserService() {
-
-    given(request.body()).willReturn(jsonContaining(REGISTRATION_DATA));
-
+    
     userApi.createUser(request, response);
 
     verify(userService).createUser(REGISTRATION_DATA);
@@ -55,10 +56,6 @@ public class UsersApiShould {
 
   @Test
   public void return_json_representing_a_user() {
-
-    given(request.body()).willReturn(jsonContaining(REGISTRATION_DATA));
-    given(userService.createUser(REGISTRATION_DATA)).willReturn(USER);
-
 
     String result = userApi.createUser(request, response);
 
