@@ -20,7 +20,7 @@ import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-public class UsersApiShould {
+public class UsersApiTest {
 
   private static final String USERNAME = "alice";
 
