@@ -1,11 +1,11 @@
 package org.openchat.api;
 
 import com.eclipsesource.json.JsonObject;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.openchat.domain.users.RegsitrationData;
 import org.openchat.domain.users.UserService;
 import spark.Request;
@@ -14,8 +14,8 @@ import spark.Response;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
-@ExtendWith(MockitoExtension.class)
-class UsersApiShould {
+@RunWith(MockitoJUnitRunner.class)
+public class UsersApiShould {
 
   private static final String USERNAME = "alice";
 
@@ -29,7 +29,7 @@ class UsersApiShould {
   @Mock Response response;
   @Mock UserService userService;
 
-  @BeforeEach void
+  @Before public void
   setUp() {
     userApi = new UsersApi(userService);
   }
@@ -37,7 +37,7 @@ class UsersApiShould {
 
 
   @Test
-  void callcreateUserService() {
+  public void callcreateUserService() {
 
     given(request.body()).willReturn(jsonContaining(REGISTRATION_DATA));
 

@@ -2,7 +2,8 @@ package integration;
 
 
 import com.eclipsesource.json.JsonObject;
-import org.junit.jupiter.api.Test;
+import org.junit.Ignore;
+import org.junit.Test;
 
 import static com.jayway.restassured.RestAssured.given;
 
@@ -11,6 +12,7 @@ public class IntegrationTest {
   private String BASE_URL = "http://localhost:4321";
 
   @Test
+  @Ignore
   public void failing_test() {
     given()
         .body(withJsonContaining("lucy","aPassword", "abaout Lucy"))
