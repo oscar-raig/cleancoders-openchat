@@ -11,6 +11,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.openchat.domain.users.RegsitrationData;
 import org.openchat.domain.users.User;
 import org.openchat.domain.users.UserService;
+import org.openchat.domain.users.exceptions.UserExistsException;
 import org.openchat.infrastructure.UserBuilder;
 import spark.Request;
 import spark.Response;
@@ -73,7 +74,17 @@ public class UsersApiTest {
     assertThat(json.get("id").asString(), Is.is(AN_ID));
   }
 
-  
+
+  @Test public void
+  return_400_if_username_exists() {
+
+    given(userService.createUser(REGISTRATION_DATA)).willThrow(UserExistsException.class);
+
+    String result  = userApi.createUser(request, response);
+
+    verify(response).status(400);
+    assertThat(result, Is.is("Username already in use"));
+  }
 
   private String jsonContaining(RegsitrationData registrationData) {
 
