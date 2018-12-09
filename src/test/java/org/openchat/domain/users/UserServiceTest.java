@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.openchat.domain.users.exceptions.UserExistsException;
 import org.openchat.infrastructure.UserBuilder;
 
 import static org.mockito.BDDMockito.given;
@@ -42,5 +43,11 @@ public class UserServiceTest {
 
     userservice.createUser(REGISTRATION_DATA);
     verify(userRepsitory).add(USER);
+  }
+
+  @Test ( expected = UserExistsException.class) public void
+  should_throw_exception_when_attempt_to_create_duplicate_username() {
+
+
   }
 }

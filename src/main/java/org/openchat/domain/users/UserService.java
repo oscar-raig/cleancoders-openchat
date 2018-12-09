@@ -11,8 +11,10 @@ public class UserService {
   }
 
   public User createUser(RegsitrationData registrationData) {
-    return userRepository.add(new User(idGenerator.next(),
+    User user = new User(idGenerator.next(),
         registrationData.getUsername(),
-        registrationData.getAbout()));
+        registrationData.getAbout());
+     userRepository.add(user);
+     return user;
   }
 }
