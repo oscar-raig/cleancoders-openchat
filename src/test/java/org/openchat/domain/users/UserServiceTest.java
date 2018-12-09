@@ -48,6 +48,7 @@ public class UserServiceTest {
   @Test ( expected = UserExistsException.class) public void
   should_throw_exception_when_attempt_to_create_duplicate_username() {
 
-
+    given(userRepsitory.isUsernameTaken(A_USER_NAME)).willReturn(true);
+    userservice.createUser(REGISTRATION_DATA);
   }
 }
