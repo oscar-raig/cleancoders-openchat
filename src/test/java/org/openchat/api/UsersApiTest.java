@@ -71,15 +71,16 @@ public class UsersApiTest {
     assertThat(json.get("username").asString(), Is.is(USERNAME));
     assertThat(json.get("about").asString(), Is.is(ABOUT));
     assertThat(json.get("id").asString(), Is.is(AN_ID));
-
   }
 
+  
+
   private String jsonContaining(RegsitrationData registrationData) {
+
     return new JsonObject()
         .add("username", registrationData.getUsername())
         .add("password", registrationData.getPassword())
         .add("about", registrationData.getAbout())
         .toString();
-
   }
 }
