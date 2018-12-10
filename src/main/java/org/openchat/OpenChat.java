@@ -1,17 +1,13 @@
 package org.openchat;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import static org.eclipse.jetty.http.HttpStatus.NOT_IMPLEMENTED_501;
 import static spark.Spark.before;
 import static spark.Spark.internalServerError;
 import static spark.Spark.notFound;
 import static spark.Spark.port;
-
-import org.openchat.api.UsersApi;
-import org.openchat.domain.users.IdGenerator;
-import org.openchat.domain.users.UserRepository;
-import org.openchat.domain.users.UserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class OpenChat {
 
