@@ -1,4 +1,4 @@
-package org.openchat.comments;
+package org.openchat.domain.posts;
 
 public class Post {
   private final String text;

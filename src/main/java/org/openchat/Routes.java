@@ -6,7 +6,7 @@ import static spark.Spark.post;
 import org.openchat.api.LoginApi;
 import org.openchat.api.PostApi;
 import org.openchat.api.UsersApi;
-import org.openchat.comments.PostService;
+import org.openchat.domain.posts.PostService;
 import org.openchat.domain.users.IdGenerator;
 import org.openchat.domain.users.UserRepository;
 import org.openchat.domain.users.UserService;

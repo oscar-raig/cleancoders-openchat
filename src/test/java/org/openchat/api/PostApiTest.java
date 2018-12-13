@@ -6,9 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.openchat.comments.NewPost;
-import org.openchat.comments.Post;
-import org.openchat.comments.PostService;
+import org.openchat.domain.posts.NewPost;
+import org.openchat.domain.posts.Post;
+import org.openchat.domain.posts.PostService;
 import spark.Request;
 import spark.Response;
 
