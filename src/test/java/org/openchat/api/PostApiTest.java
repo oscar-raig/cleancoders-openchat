@@ -6,7 +6,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.openchat.domain.posts.NewPost;
 import org.openchat.domain.posts.Post;
 import org.openchat.domain.posts.PostService;
 import spark.Request;
@@ -31,7 +30,7 @@ public class PostApiTest {
   @Before
   public void setUp() {
     postApi = new PostApi(postService);
-    given(postService.createPost(any(String.class), any(NewPost.class))).willReturn(createNewPost());
+    given(postService.createPost(any(String.class), any(String.class))).willReturn(createNewPost());
     given(req.body()).willReturn(jsonContaingingPost());
   }
 
@@ -50,7 +49,7 @@ public class PostApiTest {
 
     postApi.createPost(req, res);
 
-    verify(postService, times(1)).createPost(any(String.class), any(NewPost.class));
+    verify(postService, times(1)).createPost(any(String.class), any(String.class));
   }
 
   private Post createNewPost() {
