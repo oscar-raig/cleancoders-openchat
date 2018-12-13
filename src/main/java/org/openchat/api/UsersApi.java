@@ -2,7 +2,7 @@ package org.openchat.api;
 
 import static org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400;
 import static org.eclipse.jetty.http.HttpStatus.CREATED_201;
-import static org.openchat.infrastructure.UserJson.jsonFor;
+import static org.openchat.infrastructure.json.UserJson.jsonFor;
 
 import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;

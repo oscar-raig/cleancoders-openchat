@@ -1,4 +1,5 @@
 package org.openchat.domain.posts;
 
-public class InapropiateLanguageException {
+public class InapropiateLanguageException extends Exception {
+
 }

@@ -8,11 +8,13 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.openchat.domain.posts.InapropiateLanguageException;
 import org.openchat.domain.posts.Post;
 import org.openchat.domain.posts.PostService;
 import spark.Request;
 import spark.Response;
 
+import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -36,7 +38,7 @@ public class PostApiTest {
   private PostApi postApi;
 
   @Before
-  public void setUp() {
+  public void setUp() throws InapropiateLanguageException {
     postApi = new PostApi(postService);
     given(postService.createPost(any(String.class), any(String.class)))
         .willReturn(POST);
@@ -54,13 +56,24 @@ public class PostApiTest {
   }
 
   @Test public void
-  should_delegate_in_post_service() {
+  should_delegate_in_post_service() throws InapropiateLanguageException {
 
 
     postApi.createPost(req, res);
 
     verify(postService, times(1))
         .createPost(USER_ID, A_TEXT);
+  }
+
+  @Test() public void
+  should_return_error_when_inapropiate_language_is_used() throws InapropiateLanguageException {
+
+    given(postService.createPost(any(), any()))
+        .willThrow(InapropiateLanguageException.class);
+
+    String result = postApi.createPost(req, res);
+    verify(res).status(400);
+    assertThat(result).isEqualTo("Post contains inapropiate language");
   }
 
   private Post createNewPost() {

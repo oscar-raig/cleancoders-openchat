@@ -1,4 +1,4 @@
-package org.openchat.infrastructure;
+package org.openchat.infrastructure.json;
 
 import com.eclipsesource.json.JsonObject;
 import org.openchat.domain.users.User;

@@ -1,7 +1,7 @@
 package org.openchat.api;
 
 import org.openchat.domain.users.User;
-import org.openchat.infrastructure.UserJson;
+import org.openchat.infrastructure.json.UserJson;
 import spark.Request;
 import spark.Response;
 
