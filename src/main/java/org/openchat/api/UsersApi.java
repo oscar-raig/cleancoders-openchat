@@ -22,14 +22,22 @@ public class UsersApi {
 
   public String createUser(Request request, Response response) {
     try {
-      User user = userService.createUser(createRegistrationDataFrom(request));
-      response.status(CREATED_201);
-      response.type("application/json");
-      return jsonFor(user);
+      return prepareOkResponse(request, response);
     } catch (UserExistsException userExistsException ){
-      response.status(BAD_REQUEST_400);
-      return "Username already in use";
+      return prepareErrorResponse(response);
     }
+  }
+
+  private String prepareErrorResponse(Response response) {
+    response.status(BAD_REQUEST_400);
+    return "Username already in use";
+  }
+
+  private String prepareOkResponse(Request request, Response response) {
+    User user = userService.createUser(createRegistrationDataFrom(request));
+    response.status(CREATED_201);
+    response.type("application/json");
+    return jsonFor(user);
   }
 
   private RegsitrationData createRegistrationDataFrom(Request request) {
