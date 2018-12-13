@@ -1,6 +1,8 @@
 package org.openchat.api;
 
 import com.eclipsesource.json.JsonObject;
+import java.util.Date;
+import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,8 +21,12 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PostApiTest {
 
-  public static final String A_POST = "a post";
+  private static final String A_POST_ID = UUID.randomUUID().toString();
+  private static final String A_TEXT = "text";
+  private final Date DATE = new Date();
+
   private static String USER_ID = "aUserId";
+  private final Post POST = createNewPost();
 
   @Mock private Request req;
   @Mock private Response res;
@@ -31,8 +37,9 @@ public class PostApiTest {
   @Before
   public void setUp() {
     postApi = new PostApi(postService);
-    given(postService.createPost(any(String.class), any(String.class))).willReturn(createNewPost());
-    given(req.body()).willReturn(jsonContaingingPost());
+    given(postService.createPost(any(String.class), any(String.class)))
+        .willReturn(POST);
+    given(req.body()).willReturn(jsonContaingingPost(POST));
     given(req.params(any(String.class))).willReturn(USER_ID);
   }
 
@@ -51,16 +58,20 @@ public class PostApiTest {
 
     postApi.createPost(req, res);
 
-    verify(postService, times(1)).createPost(USER_ID, A_POST);
+    verify(postService, times(1))
+        .createPost(USER_ID, A_TEXT);
   }
 
   private Post createNewPost() {
-    return new Post("text");
+    return new Post(A_POST_ID, USER_ID, A_TEXT, DATE);
   }
 
-  private String jsonContaingingPost() {
+  private String jsonContaingingPost(Post post) {
     return new JsonObject()
-            .add("text", A_POST)
+            .add("postId", post.getPostId())
+            .add("userId", post.getUserId())
+            .add("text", post.getText())
+            .add("dateTime", post.getDate().toString())
             .toString();
   }
 }
