@@ -1,7 +1,6 @@
 package org.openchat.domain.posts;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
@@ -36,29 +35,23 @@ public class Post {
     return date;
   }
 
-  @Override
-  public boolean equals(Object obj) {
-    if (obj == null) {
-      return false;
-    }
-    if (obj == this) {
-      return true;
-    }
-    if (obj.getClass() != getClass()) {
-      return false;
-    }
-    Post rhs = (Post) obj;
+  @Override public boolean equals(Object o) {
+    if (this == o) return true;
+
+    if (o == null || getClass() != o.getClass()) return false;
+
+    Post post = (Post) o;
+
     return new EqualsBuilder()
-        .append(this.postId, rhs.postId)
-        .append(this.userId, rhs.userId)
-        .append(this.text, rhs.text)
-        .append(this.date, rhs.date)
+        .append(postId, post.postId)
+        .append(userId, post.userId)
+        .append(text, post.text)
+        .append(date, post.date)
         .isEquals();
   }
 
-  @Override
-  public int hashCode() {
-    return new HashCodeBuilder()
+  @Override public int hashCode() {
+    return new HashCodeBuilder(17, 37)
         .append(postId)
         .append(userId)
         .append(text)
