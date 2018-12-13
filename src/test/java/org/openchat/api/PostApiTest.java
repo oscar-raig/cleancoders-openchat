@@ -19,6 +19,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class PostApiTest {
 
+  public static final String A_POST = "a post";
   private static String USER_ID = "aUserId";
 
   @Mock private Request req;
@@ -37,7 +38,7 @@ public class PostApiTest {
   @Test public void
   should_return_api() {
 
-    given(req.params("userId")).willReturn(USER_ID);
+    given(req.params(any(String.class))).willReturn(USER_ID);
 
     postApi.createPost(req, res);
     verify(res).type("application/json");
@@ -49,7 +50,7 @@ public class PostApiTest {
 
     postApi.createPost(req, res);
 
-    verify(postService, times(1)).createPost(any(String.class), any(String.class));
+    verify(postService, times(1)).createPost(USER_ID, A_POST);
   }
 
   private Post createNewPost() {
@@ -58,7 +59,7 @@ public class PostApiTest {
 
   private String jsonContaingingPost() {
     return new JsonObject()
-            .add("text", "a post")
+            .add("text", A_POST)
             .toString();
   }
 }
