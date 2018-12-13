@@ -33,12 +33,12 @@ public class PostApiTest {
     postApi = new PostApi(postService);
     given(postService.createPost(any(String.class), any(String.class))).willReturn(createNewPost());
     given(req.body()).willReturn(jsonContaingingPost());
+    given(req.params(any(String.class))).willReturn(USER_ID);
   }
 
   @Test public void
   should_return_api() {
 
-    given(req.params(any(String.class))).willReturn(USER_ID);
 
     postApi.createPost(req, res);
     verify(res).type("application/json");
@@ -47,6 +47,7 @@ public class PostApiTest {
 
   @Test public void
   should_delegate_in_post_service() {
+
 
     postApi.createPost(req, res);
 
