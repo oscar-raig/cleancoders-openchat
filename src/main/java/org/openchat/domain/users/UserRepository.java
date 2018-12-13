@@ -2,7 +2,6 @@ package org.openchat.domain.users;
 
 import java.util.ArrayList;
 import java.util.List;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 public class UserRepository {
 

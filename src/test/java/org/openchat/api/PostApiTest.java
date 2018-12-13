@@ -1,7 +1,7 @@
 package org.openchat.api;
 
 import com.eclipsesource.json.JsonObject;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
@@ -23,7 +23,8 @@ public class PostApiTest {
 
   private static final String A_POST_ID = UUID.randomUUID().toString();
   private static final String A_TEXT = "text";
-  private final Date DATE = new Date();
+  private final String DATE_AS_STRING = "2018-12-12 10T14:30:00Z";
+  private final LocalDateTime DATE = LocalDateTime.now();
 
   private static String USER_ID = "aUserId";
   private final Post POST = createNewPost();
@@ -71,7 +72,7 @@ public class PostApiTest {
             .add("postId", post.getPostId())
             .add("userId", post.getUserId())
             .add("text", post.getText())
-            .add("dateTime", post.getDate().toString())
+            .add("dateTime", DATE_AS_STRING)
             .toString();
   }
 }
